@@ -111,6 +111,7 @@ var divider = document.querySelector(".divider");
 var results = document.querySelector(".results");
 var scores = [];
 var index = 0;
+var mark = 0;
 
 function home() {
 
@@ -192,13 +193,9 @@ function startQuiz () {
 
         index++;
 
-        divider.style.visibility = "visible";
-
         // click option
     }
 };
-
-// timer function
 
 
 

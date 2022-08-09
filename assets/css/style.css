@@ -24,6 +24,7 @@ body {
 .question-container {
     text-align: center;
     margin: 20px;
+    align-self: center;
 }
 
 .title {
@@ -46,4 +47,12 @@ body {
 
 .countdown {
     float: right;
+}
+
+.btn-answer {
+    margin: 20px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
