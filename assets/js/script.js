@@ -1,6 +1,6 @@
 const questionArr = [
     {
-        question: "Inside which HTML element do we put the Javascript?"
+        question: "Inside which HTML element do we put the Javascript?",
         choices: {
             a: "A. <js>",
             b: "B. <script>",
@@ -70,6 +70,10 @@ function home() {
 function startQuiz () {
 
 }
+
+
+
+
 
 // possible functions
 
