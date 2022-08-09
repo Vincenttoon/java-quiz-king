@@ -11,9 +11,14 @@
     --fourth: #668BA4;
 }
 
+body {
+    background-color: var(--primary);
+    color: var(--fourth);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 .header {
     display: flex;
-    justify-content: space-between;
 }
 
 .welcome {
@@ -23,10 +28,13 @@
 
 .title {
     line-height: 1.8;
+    font-size: 40px;
 }
 
 .text {
     line-height: 1.8;
+    margin: 20px;
+    border;
 }
 
 .btn {
@@ -38,5 +46,5 @@
 }
 
 .countdown {
-    text-align: right;
+    float: right;
 }

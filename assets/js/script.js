@@ -21,11 +21,14 @@ function home() {
         viewScores.textContent = "High Scores";
     console.log(viewScores);
 
-    // create timer 
+    // create timer and seconds
     var countTimer = document.createElement("p");
         countTimer.classList.add("header", "countdown");
         countTimer.textContent = "Time Remaining: ";
     console.log(countTimer);
+    var countSecond = document.createElement("span");
+        countSecond.setAttribute("id", "seconds");
+        countTimer.appendChild(countSecond);
 
     // home screen header and text explaining rules
     var welcomeTitle = document.createElement("h1");
@@ -50,6 +53,9 @@ function home() {
     welcome.appendChild(welcomeTitle);
     welcome.appendChild(welcomeText);
     welcome.appendChild(quizBtn);
+
+    // event listener to start quiz and start timer (need timer function)
+    document.querySelector(".start-quiz").addEventListener("click", fallingTime);
     
 }
 
