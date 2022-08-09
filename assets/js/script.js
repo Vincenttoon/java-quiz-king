@@ -61,7 +61,7 @@ function home() {
     welcome.appendChild(quizBtn);
 
     // event listener to start quiz and start timer (need timer function)
-    document.querySelector(".start-quiz").addEventListener("click", fallingTime);
+    document.querySelector(".start-quiz").addEventListener("click", startQuiz);
     
 }
 
@@ -69,13 +69,33 @@ function home() {
 
 function startQuiz () {
 
+    // create container for quiz content
     if (index < questionArr.length) {
         var quizBox = document.createElement("div");
             quizBox.classList.add("box");
             container.appendChild(quizBox);
             
         var quizHeader = document.createElement("h2");
-            quizHeader
+            quizHeader.classList.add("title");
+            quizHeader.textContent = questionArr[index].question;
+            quizBox.appendChild(quizHeader);
+
+        var setChoices = questionArr[index].options;
+        for (var x in setChoices) {
+            var quizOpt = document.createElement("button");
+            quizOpt.classList.add("btn btn-answer");
+            if (x === questionArr[index].choice) {
+                quizOpt.setAttribute("check", "correct");
+            }
+            quizOpt.textContent = setChoices[x];
+            quizBox.appendChild(quizOpt);
+        }
+
+        index++;
+
+        divider.style.visibility = "visible";
+
+        // click option
     }
 };
 
