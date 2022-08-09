@@ -1,6 +1,12 @@
 const questionArr = [
     {
-
+        question: "Inside which HTML element do we put the Javascript?"
+        choices: {
+            a: "A. <js>",
+            b: "B. <script>",
+            c: "C. <javascript>",
+            d: "D. <scripting>",
+        }
     }
 ];
 
@@ -47,7 +53,7 @@ function home() {
         quizBtn.textContent = "Begin";
     console.log(quizBtn);
 
-
+    // appending to create page
     highscore.appendChild(viewScores);
     clock.appendChild(countTimer);
     welcome.appendChild(welcomeTitle);
@@ -59,6 +65,11 @@ function home() {
     
 }
 
+// start quiz function
+
+function startQuiz () {
+
+}
 
 // possible functions
 
