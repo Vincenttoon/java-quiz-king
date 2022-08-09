@@ -92,7 +92,7 @@ const questionArr = [
     },
 ];
 
-// ^^ vv posible variables
+// ^^ vv possible variables
 var highscore = document.querySelector(".high-score");
 var clock = document.querySelector(".timer");
 var welcome = document.querySelector(".welcome");
@@ -135,9 +135,9 @@ function home() {
     // appending to create page
     highscore.appendChild(viewScores);
     clock.appendChild(countTimer);
-    welcome.appendChild(welcomeTitle);
-    welcome.appendChild(welcomeText);
-    welcome.appendChild(quizBtn);
+    container.appendChild(welcomeTitle);
+    container.appendChild(welcomeText);
+    container.appendChild(quizBtn);
 
     // event listener to start quiz and start timer (need timer function)
     document.querySelector(".start-quiz").addEventListener("click", startQuiz);
@@ -177,6 +177,38 @@ function startQuiz () {
         // click option
     }
 };
+
+// timer function
+
+function timer() {
+
+    var timeLeft = 60;
+
+    var timeInterval = setInterval(function() {
+
+        var timeEl = document.querySelector("#seconds");
+        timeEl.textContent = timeLeft + "s";
+        timeLeft--;
+
+        if (result.textContent.match(/wrong/gi)) {
+            timeLeft -= 10; 
+        }
+
+        if (timeLeft < 0 || scores.length === questionArr.length) {
+
+            clearInterval(timeInterval);
+
+            alert("Quiz is over");
+            timeEl.textContent = 0 + "s";
+
+            index += questionsArr.length;
+
+            createQuiz();
+        }
+    }, 1000);
+
+    createQuiz();
+}
 
 
 

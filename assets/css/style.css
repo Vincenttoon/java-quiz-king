@@ -21,7 +21,7 @@ body {
     display: flex;
 }
 
-.welcome {
+.question-container {
     text-align: center;
     margin: 20px;
 }
@@ -34,7 +34,6 @@ body {
 .text {
     line-height: 1.8;
     margin: 20px;
-    border;
 }
 
 .btn {
