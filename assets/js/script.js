@@ -1,6 +1,6 @@
 const questionArr = [
     {
-        question: "Inside which HTML element do we put the Javascript?"
+        question: "Inside which HTML element do we put the Javascript?",
         choices: {
             a: "A. <js>",
             b: "B. <script>",
@@ -14,8 +14,8 @@ const questionArr = [
 var highscore = document.querySelector(".high-score");
 var clock = document.querySelector(".timer");
 var welcome = document.querySelector(".welcome");
-var rules = document.querySelector(".rules");
 var questions = document.querySelector(".questions");
+var container = document.querySelector(".question-container");
 var results = document.querySelector(".results");
 var scores = [];
 var index = 0;
@@ -69,7 +69,15 @@ function home() {
 
 function startQuiz () {
 
-}
+    if (index < questionArr.length) {
+        var quizBox = document.createElement("div");
+            quizBox.classList.add("box");
+            container.appendChild(quizBox);
+            
+        var quizHeader = document.createElement("h2");
+            quizHeader
+    }
+};
 
 // possible functions
 
