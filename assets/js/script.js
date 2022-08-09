@@ -6,8 +6,8 @@ const questionArr = [
             b: "B. <script>",
             c: "C. <javascript>",
             d: "D. <scripting>"
-        }
-        
+        },
+        answer: "b"
     },
     {
         question: "Where is the correct place to insert a JavaScript?",
@@ -16,7 +16,8 @@ const questionArr = [
             b: "B. The <body> section",
             c: "C. The <head> section",
             d: "D. The <footer> section"
-        }
+        },
+        answer: "b"
     },
     {
         question: "What is the correct syntax for referring to an external script called 'xxx.js'",
@@ -25,7 +26,8 @@ const questionArr = [
             b: "B. <script name='xxx.js'",
             c: "C. <script href='xxx.js'",
             d: "D. <script link='xxx.js'",
-        }
+        },
+        answer: "a"
     },
     {
         question: "Where is the correct place to insert a JavaScript?",
@@ -34,7 +36,8 @@ const questionArr = [
             b: "B. The <body> section",
             c: "C. The <head> section",
             d: "D. The <footer> section"
-        }
+        },
+        answer: "b"
     },
     {
         question: "How do you write 'Hello World' in an alert box?",
@@ -43,7 +46,8 @@ const questionArr = [
             b: "B. alertBox('Hello World')",
             c: "C. alert('Hello World')",
             d: "D. msgBox('Hello World')"
-        }
+        },
+        answer: "c"
     },
     {
         question: "How do you create a function in Javascript?",
@@ -52,7 +56,8 @@ const questionArr = [
             b: "B. function:myFunction()",
             c: "C. Function MyFunction()",
             d: "D. function myFunction()"
-        }
+        },
+        answer: "d"
     },
     {
         question: "How do you call a function called 'myFunction'?",
@@ -61,7 +66,8 @@ const questionArr = [
             b: "B. call myFunction()",
             c: "C. myFunction()",
             d: "D. var myFunction()"
-        }
+        },
+        answer: "c"
     },
     {
         question: "How to write an IF statement in Javascript?",
@@ -70,7 +76,8 @@ const questionArr = [
             b: "B. if (i == 5)",
             c: "C. if i = 5",
             d: "D. if i == 5 then"
-        }
+        },
+        answer: "b"
     },
     {
         question: "How can you add a comment in Javascript?",
@@ -79,7 +86,8 @@ const questionArr = [
             b: "B. <!-- This is a comment -->",
             c: "C. 'This is a comment",
             d: "D. *This is a comment*"
-        }
+        },
+        answer: "a"
     },
     {
         question: "How do you declare a Javascript variable?",
@@ -88,8 +96,9 @@ const questionArr = [
             b: "B. v carName",
             c: "C. v function (carName)",
             d: "D. var carName"
-        }
-    },
+        },
+        answer: "d"
+    }
 ];
 
 // ^^ vv possible variables
@@ -104,6 +113,12 @@ var scores = [];
 var index = 0;
 
 function home() {
+
+    var removeAll = container;
+    while(removeAll.hasChildNodes()) {
+        removeAll.removeChild(removeAll.firstChild);
+    };
+
     // create high score button
     var viewScores = document.createElement("button");
         viewScores.classList.add("btn", "header", "view-scores")
@@ -148,6 +163,11 @@ function home() {
 
 function startQuiz () {
 
+    var removeAll = container;
+    while(removeAll.hasChildNodes()) {
+        removeAll.removeChild(removeAll.firstChild);
+    };
+
     // create container for quiz content
     if (index < questionArr.length) {
         var quizBox = document.createElement("div");
@@ -159,15 +179,15 @@ function startQuiz () {
             quizHeader.textContent = questionArr[index].question;
             quizBox.appendChild(quizHeader);
 
-        var setChoices = questionArr[index].options;
-        for (var x in setChoices) {
-            var quizOpt = document.createElement("button");
-            quizOpt.classList.add("btn btn-answer");
-            if (x === questionArr[index].choice) {
-                quizOpt.setAttribute("check", "correct");
+        var choicesObj = questionArr[index].choices;
+        for (var x in choicesObj) {
+            var quizOption = document.createElement("button");
+            quizOption.classList.add("btn", "btn-answer");
+            if (x === questionArr[index].answer) {
+                quizOption.setAttribute("check", "correct");
             }
-            quizOpt.textContent = setChoices[x];
-            quizBox.appendChild(quizOpt);
+            quizOption.textContent = choicesObj[x];
+            quizBox.appendChild(quizOption);
         }
 
         index++;
@@ -179,36 +199,6 @@ function startQuiz () {
 };
 
 // timer function
-
-function timer() {
-
-    var timeLeft = 60;
-
-    var timeInterval = setInterval(function() {
-
-        var timeEl = document.querySelector("#seconds");
-        timeEl.textContent = timeLeft + "s";
-        timeLeft--;
-
-        if (result.textContent.match(/wrong/gi)) {
-            timeLeft -= 10; 
-        }
-
-        if (timeLeft < 0 || scores.length === questionArr.length) {
-
-            clearInterval(timeInterval);
-
-            alert("Quiz is over");
-            timeEl.textContent = 0 + "s";
-
-            index += questionsArr.length;
-
-            createQuiz();
-        }
-    }, 1000);
-
-    createQuiz();
-}
 
 
 
