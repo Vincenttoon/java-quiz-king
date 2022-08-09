@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #feffdf;
+    --secondary: #dde0ab;
+    --third: #97cba9;
+    --fourth: #668BA4;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.welcome {
+    text-align: center;
+    margin: 20px;
+}
+
+.title {
+    line-height: 1.8;
+}
+
+.text {
+    line-height: 1.8;
+}
+
+.btn {
+    background-color: #668BA4;
+    color: #dde0ab;
+    font-size: 22px;
+    border-radius: 10%;
+    padding: 10px;
+}
+
+.countdown {
+    text-align: right;
+}
