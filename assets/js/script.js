@@ -108,7 +108,7 @@ var welcome = document.querySelector(".welcome");
 var questions = document.querySelector(".questions");
 var container = document.querySelector(".question-container");
 var divider = document.querySelector(".divider");
-var results = document.querySelector(".results");
+var result = document.querySelector(".result");
 var scores = [];
 var index = 0;
 var mark = 0;
@@ -193,7 +193,8 @@ function startQuiz () {
 
         index++;
 
-        // click option
+         // click option
+        document.querySelector(".box").addEventListener("click", checkResult);
     }
 };
 
@@ -213,6 +214,28 @@ function timer(){
     startQuiz()
     console.log(downloadTimer);
 };
+
+function checkResult(event) {
+
+    var targetEl = event.target;
+
+    var check = document.createElement("p");
+    check.classList.add("check-result");
+    if (targetEl.hasAttribute("check")) {
+        check.textContent = "Correct!";
+        mark += 10;
+    } else {
+        check.textContent = "Wrong!";
+        mark -= 10;
+    }
+    result.appendChild(check);
+    scores.push(mark);
+
+    setTimeout(() => {
+        check.remove();
+        startQuiz();
+    }, 1000);   
+}
 
 
 
