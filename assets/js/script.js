@@ -195,6 +195,43 @@ function startQuiz () {
 
          // click option
         document.querySelector(".box").addEventListener("click", checkResult);
+    } else {
+        var endQuiz = document.createElement("h2");
+            endQuiz.classList.add("title");
+            endQuiz.textContent = "All done!";
+        container.appendChild(endQuiz);
+
+        var sum = document.createElement("p");
+            sum.classList.add("text");
+            sum.textContent = "Your final score is " + mark + " !";
+        container.appendChild(sum);
+
+        // score form
+        var formEl = document.createElement("form");
+            formEl.classList.add = ("form");
+        container.appendChild(formEl);
+
+        var label = document.createElement("label");
+        label.classList.add("text");
+        label.setAttribute("for", "name");
+        label.textContent = "Enter name:";
+        formEl.appendChild(label);
+
+        var input = document.createElement("input");
+        input.classList.add("text");
+        input.setAttribute("type", "text");
+        input.setAttribute("name", "name");
+        input.setAttribute("id", "name");
+        input.setAttribute("placeholder", "name");
+        formEl.appendChild(input); 
+
+        var submit = document.createElement("button");
+        submit.classList.add("btn", "btn-submit");
+        submit.textContent = "Submit";
+        formEl.appendChild(submit);
+
+        // click submit button
+        document.querySelector(".btn-submit").addEventListener("click", home);
     }
 };
 
@@ -241,12 +278,17 @@ function checkResult(event) {
 
 
 
+
+
 // possible functions
 // correct answer
 // timer
 // final result
 // ^^name insert
 // save score
+function saveScores() {
+    localStorage.setItem("High scores", JSON.stringify(record));
+}
 // logged high score list
 
 home();
