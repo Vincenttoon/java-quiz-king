@@ -156,7 +156,7 @@ function home() {
     container.appendChild(quizBtn);
 
     // event listener to start quiz and start timer (need timer function)
-    document.querySelector(".start-quiz").addEventListener("click", startQuiz);
+    document.querySelector(".start-quiz").addEventListener("click", timer);
     
 }
 
@@ -195,6 +195,23 @@ function startQuiz () {
 
         // click option
     }
+};
+
+// set timer function
+
+function timer(){
+
+    let timeleft = 60;
+    const downloadTimer = setInterval(() => {
+        if (timeleft <= 0) {
+            clearInterval(downloadTimer);
+        }
+        document.getElementById(".progressBar").value = 60 - timeleft;
+        timeleft -= 1;
+    }, 1000);
+
+    startQuiz()
+    console.log(downloadTimer);
 };
 
 
