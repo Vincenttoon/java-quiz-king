@@ -56,3 +56,11 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+.progressB {
+    display: flex;
+    float: right;
+    margin-left: 10px;
+    height: 20px;
+
+}

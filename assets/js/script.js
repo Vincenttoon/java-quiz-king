@@ -206,7 +206,7 @@ function timer(){
         if (timeleft <= 0) {
             clearInterval(downloadTimer);
         }
-        document.getElementById(".progressBar").value = 60 - timeleft;
+        document.getElementById("progressBar").value = 60 - timeleft;
         timeleft -= 1;
     }, 1000);
 
