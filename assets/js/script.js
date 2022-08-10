@@ -112,6 +112,7 @@ var result = document.querySelector(".result");
 var scores = [];
 var index = 0;
 var points = 0;
+var record = [];
 
 function home() {
 
@@ -125,14 +126,10 @@ function home() {
         viewScores.classList.add("btn", "header", "view-scores")
         viewScores.textContent = "High Scores";
 
-    // create timer and seconds
+    // create timer text
     var countTimer = document.createElement("p");
         countTimer.classList.add("header", "countdown");
         countTimer.textContent = "Time Remaining: ";
-    console.log(countTimer);
-    var countSecond = document.createElement("span");
-        countSecond.setAttribute("id", "seconds");
-        countTimer.appendChild(countSecond);
 
     // home screen header and text explaining rules
     var welcomeTitle = document.createElement("h1");
@@ -155,11 +152,11 @@ function home() {
     container.appendChild(welcomeText);
     container.appendChild(quizBtn);
 
-    // event listener to start quiz and start timer (need timer function)
+    // event listener to start quiz and start timer
     document.querySelector(".start-quiz").addEventListener("click", timer);
 
-        // click to view high scores
-        document.querySelector(".view-scores").addEventListener("click", highscorePage);
+     // click to view high scores
+    document.querySelector(".view-scores").addEventListener("click", highscorePage);
     
 }
 
@@ -167,21 +164,32 @@ function home() {
 
 function startQuiz () {
 
+    // remove previous window additions
     var removeAll = container;
     while(removeAll.hasChildNodes()) {
         removeAll.removeChild(removeAll.firstChild);
     };
-
+    var removeHighscore = highscore;
+    while (removeHighscore.hasChildNodes()) {
+        removeHighscore.removeChild(removeHighscore.firstChild);
+    }
+    var removeProgress = progressBar;
+    while (removeProgress.hasChildNodes()) {
+        removeProgress.removeChild(removeProgress.firstChild);
+    }
+    
     // create container for quiz content
     if (index < questionArr.length) {
         var quizBox = document.createElement("div");
             quizBox.classList.add("box");
-            container.appendChild(quizBox);
+        container.appendChild(quizBox);
             
+            // container title
         var quizHeader = document.createElement("h2");
             quizHeader.classList.add("title");
             quizHeader.textContent = questionArr[index].question;
-            quizBox.appendChild(quizHeader);
+        quizBox.appendChild(quizHeader);
+
 
         var choicesObj = questionArr[index].choices;
         for (var x in choicesObj) {
@@ -277,15 +285,39 @@ function checkResult(event) {
     }, 1000);   
 }
 
-// save score
-function saveScores() {
-    localStorage.setItem("High scores", JSON.stringify(record));
+// Record high score function
+function recordHighScore(event) {
+
+    event.preventDefault();
+
+    // set scores and index to 0
+    scores.length = 0;
+    index = 0;
+
+    var playerName = document.querySelector("#name").value;
+
+    if (!playerName) {
+        alert("please enter a name.");
+    } else {
+        var recordObj = {
+            name: playerName,
+            highScore: points,
+        }
+    }
+
+    record.push(recordObj);
+
+    saveScores();
+
+    points = 0;
+
+    highscorePage();
 }
 
-// load high score
+// High score page display
 function highscorePage() {
-    // clear page content
-    highscore.style.border = "none";
+    
+    // clear previous page details
     var removeHighscore = highscore;
     while (removeHighscore.hasChildNodes()) {
         removeHighscore.removeChild(removeHighscore.firstChild);
@@ -299,24 +331,30 @@ function highscorePage() {
         removeProgress.removeChild(removeProgress.firstChild);
     }
 
-    // create high scores board
+    //Title text for High Score Page  
     var highScoresTitle = document.createElement("h1");
         highScoresTitle.classList.add("title");
         highScoresTitle.textContent = "High Scores";
     container.appendChild(highScoresTitle);
 
-    // create two buttons
+    // Return to home button
     var goBack = document.createElement("button");
         goBack.classList.add("btn", "btn-goBack");
         goBack.textContent = "Go Back";
     container.appendChild(goBack);
 
+    // Clear local storage button
     var clear = document.createElement("button");
         clear.classList.add("btn", "btn-clear");
         clear.textContent = "Clear High Scores";
     container.appendChild(clear);
 
     document.querySelector(".btn-goBack").addEventListener("click", home);
+}
+
+// Set scores to local storage
+function saveScores() {
+    localStorage.setItem("record", JSON.stringify(record));
 }
 
 // logged high score list
