@@ -153,7 +153,7 @@ function home() {
     container.appendChild(quizBtn);
 
     // event listener to start quiz and start timer
-    document.querySelector(".start-quiz").addEventListener("click", timer);
+    document.querySelector(".start-quiz").addEventListener("click", countdown);
 
      // click to view high scores
     document.querySelector(".view-scores").addEventListener("click", highscorePage);
@@ -263,6 +263,30 @@ function timer(){
     console.log(downloadTimer);
 };
 
+function countdown() {
+    var timeLeft = 60;
+  
+    // vv creates a timer in the window
+    var timeInterval = setInterval(function () {
+  
+      if (timeLeft > 1) {
+        timerEl.textContent = timeLeft + ' seconds remaining';
+        timeLeft--;
+      }
+      else if (timeLeft === 1) {
+        timerEl.textContent = timeLeft + ' second remaining';
+        timeLeft--;
+      }
+      else {
+        timerEl.textContent = '';
+        clearInterval(timeInterval);
+        displayMessage();
+      }
+    }, 1000);
+
+    startQuiz()
+  }
+
 function checkResult(event) {
 
     var targetEl = event.target;
@@ -271,10 +295,10 @@ function checkResult(event) {
     check.classList.add("check-result");
     if (targetEl.hasAttribute("check")) {
         check.textContent = "Correct!";
-        points += 10;
+        points = timeLeft;
     } else {
         check.textContent = "Wrong!";
-        points -= 10;
+        points = timeLeft - 7;
     }
     result.appendChild(check);
     scores.push(points);
@@ -294,22 +318,8 @@ function recordHighScore(event) {
     scores.length = 0;
     index = 0;
 
-    var playerName = document.querySelector("#name").value;
-
-    if (!playerName) {
-        alert("please enter a name.");
-    } else {
-        var recordObj = {
-            name: playerName,
-            highScore: points,
-        }
-    }
-
-    record.push(recordObj);
-
     saveScores();
 
-    points = 0;
 }
 
 // High score page display
@@ -356,6 +366,16 @@ function saveScores() {
 }
 
 // logged high score list
+
+// BUGS: Time remaining + progress keep reappearing
+// time doesn't stop
+// can't record high score
+// multiple answers per click
+
+// NEED TO:
+// Save scores
+// Load scores
+// Clear scores
 
 home();
 
