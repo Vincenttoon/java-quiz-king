@@ -111,7 +111,7 @@ var divider = document.querySelector(".divider");
 var result = document.querySelector(".result");
 var scores = [];
 var index = 0;
-var mark = 0;
+var points = 0;
 
 function home() {
 
@@ -157,6 +157,9 @@ function home() {
 
     // event listener to start quiz and start timer (need timer function)
     document.querySelector(".start-quiz").addEventListener("click", timer);
+
+        // click to view high scores
+        document.querySelector(".view-scores").addEventListener("click", highscorePage);
     
 }
 
@@ -203,7 +206,7 @@ function startQuiz () {
 
         var sum = document.createElement("p");
             sum.classList.add("text");
-            sum.textContent = "Your final score is " + mark + " !";
+            sum.textContent = "Your final score is " + points + " !";
         container.appendChild(sum);
 
         // score form
@@ -212,22 +215,22 @@ function startQuiz () {
         container.appendChild(formEl);
 
         var label = document.createElement("label");
-        label.classList.add("text");
-        label.setAttribute("for", "name");
-        label.textContent = "Enter name:";
+            label.classList.add("text");
+            label.setAttribute("for", "name");
+            label.textContent = "Enter name:";
         formEl.appendChild(label);
 
         var input = document.createElement("input");
-        input.classList.add("text");
-        input.setAttribute("type", "text");
-        input.setAttribute("name", "name");
-        input.setAttribute("id", "name");
-        input.setAttribute("placeholder", "name");
+            input.classList.add("text");
+            input.setAttribute("type", "text");
+            input.setAttribute("name", "name");
+            input.setAttribute("id", "name");
+            input.setAttribute("placeholder", "name");
         formEl.appendChild(input); 
 
         var submit = document.createElement("button");
-        submit.classList.add("btn", "btn-submit");
-        submit.textContent = "Submit";
+            submit.classList.add("btn", "btn-submit");
+            submit.textContent = "Submit";
         formEl.appendChild(submit);
 
         // click submit button
@@ -260,13 +263,13 @@ function checkResult(event) {
     check.classList.add("check-result");
     if (targetEl.hasAttribute("check")) {
         check.textContent = "Correct!";
-        mark += 10;
+        points += 10;
     } else {
         check.textContent = "Wrong!";
-        mark -= 10;
+        points -= 10;
     }
     result.appendChild(check);
-    scores.push(mark);
+    scores.push(points);
 
     setTimeout(() => {
         check.remove();
@@ -274,21 +277,48 @@ function checkResult(event) {
     }, 1000);   
 }
 
-
-
-
-
-
-
-// possible functions
-// correct answer
-// timer
-// final result
-// ^^name insert
 // save score
 function saveScores() {
     localStorage.setItem("High scores", JSON.stringify(record));
 }
+
+// load high score
+function highscorePage() {
+    // clear page content
+    highscore.style.border = "none";
+    var removeHighscore = highscore;
+    while (removeHighscore.hasChildNodes()) {
+        removeHighscore.removeChild(removeHighscore.firstChild);
+    }
+    var removeContainer = container;
+    while (removeContainer.hasChildNodes()) {
+        removeContainer.removeChild(removeContainer.firstChild);
+    }
+    var removeProgress = progressBar;
+    while (removeProgress.hasChildNodes()) {
+        removeProgress.removeChild(removeProgress.firstChild);
+    }
+
+    // create high scores board
+    var highScoresTitle = document.createElement("h1");
+        highScoresTitle.classList.add("title");
+        highScoresTitle.textContent = "High Scores";
+    container.appendChild(highScoresTitle);
+
+    // create two buttons
+    var goBack = document.createElement("button");
+        goBack.classList.add("btn", "btn-goBack");
+        goBack.textContent = "Go Back";
+    container.appendChild(goBack);
+
+    var clear = document.createElement("button");
+        clear.classList.add("btn", "btn-clear");
+        clear.textContent = "Clear High Scores";
+    container.appendChild(clear);
+
+    document.querySelector(".btn-goBack").addEventListener("click", home);
+}
+
 // logged high score list
 
 home();

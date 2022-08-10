@@ -31,6 +31,7 @@ body {
 .title {
     line-height: 1.8;
     font-size: 30px;
+    margin-top: 50px;
 }
 
 .text {
@@ -58,9 +59,11 @@ body {
 .btn-answer {
     margin: 20px;
     padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-flow: column;
+}
+
+.btn-answer:hover {
+    background-color: #97cba9;
 }
 
 .progressB {
