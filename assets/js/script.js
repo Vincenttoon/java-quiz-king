@@ -80,12 +80,12 @@ const questionArr = [
         answer: "b"
     },
     {
-        question: "How can you add a comment in Javascript?",
+        question: "What is the correct way to write a Javascript Array?",
         choices: {
-            a: "A. // This is a comment",
-            b: "B. <!-- This is a comment -->",
-            c: "C. 'This is a comment",
-            d: "D. *This is a comment*"
+            a: "A. var colors = ['red', 'green', 'blue']",
+            b: "B. var colors = 'red', 'green', 'blue'",
+            c: "C. var colors = (1:'red', 2:'green', 3:'blue')",
+            d: "D. var colors = 1 = ('red'), 2 = ('green'), 3 = ('blue')"
         },
         answer: "a"
     },
@@ -176,7 +176,7 @@ function startQuiz () {
     var removeProgress = progressBar;
     while (removeProgress.hasChildNodes()) {
         removeProgress.removeChild(removeProgress.firstChild);
-    }
+    }   
     
     // create container for quiz content
     if (index < questionArr.length) {
@@ -242,7 +242,7 @@ function startQuiz () {
         formEl.appendChild(submit);
 
         // click submit button
-        document.querySelector(".btn-submit").addEventListener("click", home);
+        document.querySelector(".btn-submit").addEventListener("click", highscorePage);
     }
 };
 
@@ -310,8 +310,6 @@ function recordHighScore(event) {
     saveScores();
 
     points = 0;
-
-    highscorePage();
 }
 
 // High score page display
@@ -354,7 +352,7 @@ function highscorePage() {
 
 // Set scores to local storage
 function saveScores() {
-    localStorage.setItem("record", JSON.stringify(record));
+    localStorage.setItem(".name", JSON.stringify(record));
 }
 
 // logged high score list

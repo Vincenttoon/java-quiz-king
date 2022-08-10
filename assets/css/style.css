@@ -53,7 +53,8 @@ body {
 }
 
 .countdown {
-    float: right;
+    display: flex;
+    justify-content: end;
 }
 
 .btn-answer {
@@ -72,4 +73,12 @@ body {
     margin-left: 10px;
     height: 20px;
 
+}
+
+.check-result {
+    display: flex;
+    justify-content: center;
+    font-size: larger;
+    border-top: #668BA4;
+    border-width: 80%;
 }
